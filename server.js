@@ -8,14 +8,14 @@ http
       q = url.parse(addr, true),
       filepath = "";
 
-    fs.appendfile(
+    fs.appendFile(
       "log.txt",
-      "URL: " + addr + "\nTimestamp: " + newDate() + "\n\n",
+      "URL: " + addr + "\nTimestamp: " + new Date() + "\n\n",
       (err) => {
         if (err) {
           console.log(err);
         } else {
-          console.log("Added to log");
+          console.log("Added to log.");
         }
       }
     );
