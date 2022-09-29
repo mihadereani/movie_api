@@ -1,16 +1,9 @@
 const express = require('express'),
-  morgan = require('morgan'),
-  fs = require('fs'),
-  path = require('path');
-
+  morgan = require('morgan');
 const app = express();
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
-  flags: 'a',
-});
 
-app.use(morgan('combined', { stream: accessLogStream }));
+app.use(morgan('combined'));
 app.use(express.static('public'));
-
 
 app.get('/movies', (req, res) => {
   res.json(toptenmovies);

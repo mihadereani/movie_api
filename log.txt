@@ -1,2 +1,0 @@
-::1 - - [28/Sep/2022:20:09:19 +0000] "GET /documentation.html HTTP/1.1" 200 278 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
-::1 - - [28/Sep/2022:20:09:28 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
