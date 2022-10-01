@@ -30,7 +30,7 @@ let movies = [
       Description: 'Action is where everybody dies',
     },
     Director: {
-      Neame: 'Jon Favreau',
+      Name: 'Jon Favreau',
       Bio: 'Unknown',
       Birth: 'Arround 2000',
     },
@@ -49,7 +49,7 @@ let movies = [
       Description: 'Adveture takes you to another worlds',
     },
     Director: {
-      Neame: 'Alfonso Cuarón',
+      Name: 'Alfonso Cuarón',
       Bio: 'Adventorus',
       Birth: '1984',
     },
@@ -69,7 +69,7 @@ let movies = [
       Description: 'Drama comes with a high in the middle.',
     },
     Director: {
-      Neame: 'David Frankel',
+      Name: 'David Frankel',
       Bio: 'Scary',
       Birth: '1700',
     },
