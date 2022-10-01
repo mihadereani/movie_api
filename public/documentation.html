@@ -38,7 +38,7 @@
     </tr>
 
     <tr>
-      <td>Get list of movies</td>
+      <td>GET list of movies</td>
       <td>/movies</td>
       <td>GET</td>
       <td>None</td>
@@ -46,7 +46,7 @@
     </tr>
 
     <tr>
-      <td>Get data about a single movie by title</td>
+      <td>GET data about a single movie by title</td>
       <td>/movies/[title]</td>
       <td>GET</td>
       <td>None</td>
@@ -54,7 +54,7 @@
     </tr>
 
     <tr>
-      <td>Get data about genre of a movie</td>
+      <td>GET data about genre of a movie</td>
       <td>/movies/genre/[genreName]</td>
       <td>GET</td>
       <td>None</td>
@@ -62,7 +62,7 @@
     </tr>
 
     <tr>
-      <td>Get data about a director by name</td>
+      <td>GET data about a director by name</td>
       <td>/movies/directors/[directorName]</td>
       <td>GET</td>
       <td>None</td>
@@ -70,7 +70,7 @@
     </tr>
 
     <tr>
-      <td>Allow new users to register</td>
+      <td>CREATE new user</td>
       <td>/users</td>
       <td>POST</td>
       <td>A JSON object holding data about new user to add</td>
@@ -78,7 +78,7 @@
     </tr>
 
     <tr>
-      <td>Allow users to update their user info (username)</td>
+      <td>UPDATE user info (username)</td>
       <td>/users/[id]</td>
       <td>PUT</td>
       <td>A JSON object holding data about user to update</td>
@@ -86,7 +86,7 @@
     </tr>
 
     <tr>
-      <td>Add a movie to users list of favorites</td>
+      <td>ADD a movie to users list of favorites</td>
       <td>/users/[id]/[movieTitle]</td>
       <td>POST</td>
       <td>A JSON object holding data about users new favorite movie</td>
@@ -94,7 +94,7 @@
     </tr>
 
     <tr>
-      <td>Remove a movie from users list of favorites</td>
+      <td>REMOVE a movie from users list of favorites</td>
       <td>/users/[id]/[movieTitle]</td>
       <td>DELETE</td>
       <td>None</td>
@@ -102,9 +102,8 @@
     </tr>
 
     <tr>
-      <td>Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
-      </td>
-      <td>localhost8080/users/:id/</td>
+      <td>DELETE user</td>
+      <td>/users/[id]</td>
       <td>DELETE</td>
       <td>None</td>
       <td>A text message showing that a user email has been removed</td>
