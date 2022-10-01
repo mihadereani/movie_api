@@ -1,9 +1,12 @@
 const express = require('express'),
   morgan = require('morgan');
+  bodyParser = require('body-parser');
+  uuid = require ('uuid');
 const app = express();
 
 app.use(morgan('combined'));
 app.use(express.static('public'));
+app.use(bodyParser.json());
 
 let users = [
   {
