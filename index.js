@@ -110,7 +110,7 @@ app.put('/users/:id', (req, res) => {
   }
 });
 
-app.post('/users/:id/:movieTitle', (req, res) => {
+app.post('users/:id/movies/:movieTitle', (req, res) => {
   const { id, movieTitle } = req.params;
 
   let user = users.find((user) => user.id == id);
@@ -123,7 +123,7 @@ app.post('/users/:id/:movieTitle', (req, res) => {
   }
 });
 
-app.delete('/users/:id/:movieTitle', (req, res) => {
+app.delete('users/:id/movies/:movieTitle', (req, res) => {
   const { id, movieTitle } = req.params;
 
   let user = users.find((user) => user.id == id);
@@ -172,7 +172,7 @@ app.get('/movies/:title', (req, res) => {
   }
 });
 
-app.get('/movies/genre/:genreName', (req, res) => {
+app.get('/genre/:genreName', (req, res) => {
   const { genreName } = req.params;
   const genre = movies.find((movie) => movie.Genre.Name === genreName).Genre;
   if (genre) {
@@ -182,7 +182,7 @@ app.get('/movies/genre/:genreName', (req, res) => {
   }
 });
 
-app.get('/movies/directors/:directorName', (req, res) => {
+app.get('/directors/:directorName', (req, res) => {
   const { directorName } = req.params;
   const director = movies.find(
     (movie) => movie.Director.Name === directorName
