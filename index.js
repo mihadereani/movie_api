@@ -110,7 +110,7 @@ app.put('/users/:id', (req, res) => {
   }
 });
 
-app.post('users/:id/movies/:movieTitle', (req, res) => {
+app.post('/users/:id/movies/:movieTitle', (req, res) => {
   const { id, movieTitle } = req.params;
 
   let user = users.find((user) => user.id == id);
@@ -123,7 +123,7 @@ app.post('users/:id/movies/:movieTitle', (req, res) => {
   }
 });
 
-app.delete('users/:id/movies/:movieTitle', (req, res) => {
+app.delete('/users/:id/movies/:movieTitle', (req, res) => {
   const { id, movieTitle } = req.params;
 
   let user = users.find((user) => user.id == id);
