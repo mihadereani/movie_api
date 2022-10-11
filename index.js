@@ -94,6 +94,20 @@ let movies = [
       'https://m.media-amazon.com/images/M/MV5BZjQ3ZTIzOTItMGNjNC00MWRmLWJlMGEtMjJmMDM5ZDIzZGM3XkEyXkFqcGdeQXVyMTkzODUwNzk@._V1_SX300.jpg',
   },
 ]; */
+app.get('/', (req, res) => {
+  res.send('Welcome to my app!');
+});
+
+app.get('/movies', (req, res) => {
+  Movies.find()
+    .then((movies) => {
+      res.status(201).json(movies);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
 
 app.post('/users', (req, res) => {
   Users.findOne({ Username: req.body.Username })
@@ -216,14 +230,6 @@ app.delete('/users/:Username', (req, res) => {
       console.error(err);
       res.status(500).send('Error: ' + err);
     });
-});
-
-app.get('/', (req, res) => {
-  res.send('Welcome to my app!');
-});
-
-app.get('/movies', (req, res) => {
-  res.status(200).json(movies);
 });
 
 app.get('/movies/:title', (req, res) => {
