@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let movieSchema = mongoose.Schema({
+const movieSchema = mongoose.Schema({
   Title: { type: String, required: true },
   Genre: {
     Name: String,
@@ -24,7 +24,7 @@ let userSchema = mongoose.Schema({
 });
 
 let Movie = mongoose.model('Movie', movieSchema);
-let User = mongoose.model('Movie', userSchema);
+let User = mongoose.model('User', userSchema);
 
 module.exports.Movie = Movie;
 module.exports.User = User;

@@ -19,7 +19,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let users = [
+/* let users = [
   {
     id: 1,
     name: 'Kim',
@@ -93,7 +93,7 @@ let movies = [
     Poster:
       'https://m.media-amazon.com/images/M/MV5BZjQ3ZTIzOTItMGNjNC00MWRmLWJlMGEtMjJmMDM5ZDIzZGM3XkEyXkFqcGdeQXVyMTkzODUwNzk@._V1_SX300.jpg',
   },
-];
+]; */
 
 app.post('/users', (req, res) => {
   Users.findOne({ Username: req.body.Username })
@@ -122,18 +122,49 @@ app.post('/users', (req, res) => {
     });
 });
 
-app.put('/users/:id', (req, res) => {
-  const { id } = req.params;
-  const updatedUser = req.body;
+app.get('/users', (req, res) => {
+  Users.find()
+    .then((users) => {
+      res.status(201).json.users;
+    })
+    .catch((error) => {
+      console.error(error);
+      req.status(500).send('Error: ' + error);
+    });
+});
 
-  let user = users.find((user) => user.id == id);
+app.get('/users/:Username', (req, res) => {
+  Users.findOne({ Username: req.params.Username })
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => {
+      console.error(err);
+      req.status(500).send('Error: ' + err);
+    });
+});
 
-  if (user) {
-    user.name = updatedUser.name;
-    res.status(200).json(user);
-  } else {
-    res.status(400).send('no such user');
-  }
+app.put('/users/:Username', (req, res) => {
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+      $set: {
+        Username: req.body.Username,
+        Password: req.body.Password,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday,
+      },
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
 });
 
 app.post('/users/:id/movies/:movieTitle', (req, res) => {
