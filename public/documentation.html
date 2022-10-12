@@ -19,7 +19,16 @@
 
     th,
     td {
+      vertical-align: top;
       padding: 10px;
+    }
+
+    p {
+      margin: 0px;
+    }
+
+    .blue-text {
+      color: cornflowerblue;
     }
   </style>
 </head>
@@ -46,10 +55,28 @@
 
     <tr>
       <td>GET data about a single movie by title</td>
-      <td>/movies/:title</td>
+      <td>/movies/:Title</td>
       <td>GET</td>
       <td>None</td>
-      <td>A JSON object holding data (description, genre, director, image URL, whether it’s featured or not) about a single movie</td>
+      <td>
+        <p>A JSON object holding data (description, genre, director, image URL, whether it’s featured or not) about a
+          single movie - Example:</p>
+        <p class="blue-text"> {<br>
+          "Title": "The Godfather",<br>
+          "Genre": {
+          "Name": "Crime",
+          "Description": "Crime films, in ...",
+          },<br>
+          "Director": {
+          "Name": F"rancis Ford Coppola",
+          "Bio": "Francis Ford Coppola is an American film ...",
+          },<br>
+          "Actors": [Marlon Brando, ...],<br>
+          "ImagePath": "String",<br>
+          "Featured": "True",<br>
+          }
+        </p>
+      </td>
     </tr>
 
     <tr>
@@ -57,7 +84,15 @@
       <td>/genre/:genreName</td>
       <td>GET</td>
       <td>None</td>
-      <td>A JSON object holding data about a genre (description) by name/title (e.g., “Thriller”)</td>
+      <td>
+        <p>A JSON object holding data about a genre (description) by name/title (e.g., “Thriller”)</p>
+        <p class="blue-text"> {<br>
+          "Genre": {<br>
+          "Name": "Crime"<br>
+          "Description": "Crime films, in ...",<br>
+          }
+        </p>
+      </td>
     </tr>
 
     <tr>
@@ -65,28 +100,89 @@
       <td>/directors/:directorName</td>
       <td>GET</td>
       <td>None</td>
-      <td>A JSON object holding data of a director (bio, birth year, death year)</td>
+      <td>
+        <p>A JSON object holding data of a director (bio, birth year, death year)</p>
+        <p class="blue-text"> {<br>
+          "Name": "Francis Ford Coppola",<br>
+          "Bio": "Francis Ford Coppola is an American ...",<br>
+          "Movies":
+          [
+          Apocalypse Now,
+          The Conversation,
+          The Godfather
+          ],<br>
+          "Birth": "1939-04-07",<br>
+          "Death": "1980-12-30T00:00:00.000Z"<br>
+          }
+        </p>
+      </td>
     </tr>
 
     <tr>
       <td>CREATE new user</td>
       <td>/users</td>
       <td>POST</td>
-      <td>A JSON object holding data about new user to add</td>
-      <td>A JSON object holding data about new user, including ID</td>
+      <td>
+        <p>A JSON object holding data about new user to add</p>
+        <p class="blue-text">
+          {<br>
+          "Username": "Lojze Pretnar",<br>
+          "Password": "fdhadhaer11ath",<br>
+          "Email": "lojzepretnar@outlook.com",<br>
+          "Birthday": "1983-12-30",<br>
+          "FavoriteMovies": []<br>
+          }
+        </p>
+      <td>
+        <p>A JSON object holding data about new user, including ID<br>
+        <p class="blue-text">
+          {<br>
+          "Username": "Lojze Pretnar",<br>
+          "Password": "fdhadhaer11ath",<br>
+          "Email": "lojzepretnar@outlook.com",<br>
+          "Birthday": "1983-12-30T00:00:00.000Z",<br>
+          "FavoriteMovies": [],<br>
+          "_id": "63470fbb08550d439fa6e5ea",<br>
+          "__v": 0<br>
+          }
+        </p>
+      </td>
     </tr>
 
     <tr>
-      <td>UPDATE user info (username)</td>
-      <td>/users/:id</td>
+      <td>UPDATE user info</td>
+      <td>/users/:Username</td>
       <td>PUT</td>
-      <td>A JSON object holding data about user to update</td>
-      <td>A JSON object holding data about new user info</td>
+      <td>
+        <p>A JSON object holding data about user to update</p>
+        <p class="blue-text">
+          {<br>
+          "Username": "Lojze Pretnar updated",<br>
+          "Password": "updatedfdhadhaer11ath",<br>
+          "Email": "updatedlojzepretnar@outlook.com",<br>
+          "Birthday": "1983-12-29"<br>
+          }
+        </p>
+      </td>
+      <td>
+        <p>A JSON object holding data about new user info</p>
+        <p class="blue-text">
+          {<br>
+          "_id": "63470fbb08550d439fa6e5ea",<br>
+          "Username": "Lojze Pretnar updated",<br>
+          "Password": "updatedfdhadhaer11ath",<br>
+          "Email": "updatedlojzepretnar@outlook.com",<br>
+          "Birthday": "1983-12-29T00:00:00.000Z",<br>
+          "FavoriteMovies": [],<br>
+          "__v": 0<br>
+          }
+        </p>
+      </td>
     </tr>
 
     <tr>
       <td>ADD a movie to users list of favorites</td>
-      <td>users/:id/movies/:movieTitle</td>
+      <td>/users/:Username/movies/:MovieID</td>
       <td>POST</td>
       <td>None</td>
       <td>A text message showing that a favorite movie has been added</td>
@@ -94,7 +190,7 @@
 
     <tr>
       <td>REMOVE a movie from users list of favorites</td>
-      <td>users/:id/movies/:movieTitle</td>
+      <td>/users/:Username/movies/:MovieID</td>
       <td>DELETE</td>
       <td>None</td>
       <td>A text message showing that a movie has been removed</td>
@@ -102,7 +198,7 @@
 
     <tr>
       <td>DELETE user</td>
-      <td>/users/id</td>
+      <td>/users/:Username</td>
       <td>DELETE</td>
       <td>None</td>
       <td>A text message showing that a user email has been removed</td>

@@ -41,29 +41,29 @@ app.get('/movies/:Title', (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      req.status(500).send('Error: ' + err);
+      res.status(500).send('Error: ' + err);
     });
 });
 
 app.get('/genre/:genreName', (req, res) => {
   Movies.findOne({ 'Genre.Name': req.params.genreName })
     .then((movie) => {
-      res.json(movie);
+      res.json(movie.Genre);
     })
     .catch((err) => {
       console.error(err);
-      req.status(500).send('Error: ' + err);
+      res.status(500).send('Error: ' + err);
     });
 });
 
 app.get('/directors/:directorName', (req, res) => {
   Movies.findOne({ 'Director.Name': req.params.directorName })
     .then((movie) => {
-      res.json(movie);
+      res.json(movie.Director);
     })
     .catch((err) => {
       console.error(err);
-      req.status(500).send('Error: ' + err);
+      res.status(500).send('Error: ' + err);
     });
 });
 
@@ -74,7 +74,7 @@ app.get('/users', (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      req.status(500).send('Error: ' + err);
+      res.status(500).send('Error: ' + err);
     });
 });
 
@@ -82,7 +82,7 @@ app.post('/users', (req, res) => {
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
-        return res.status(400).send(req.body.Username + 'already exists');
+        return res.status(400).send(req.body.Username + ' already exists.');
       } else {
         Users.create({
           Username: req.body.Username,
@@ -101,7 +101,7 @@ app.post('/users', (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      req.status(500).send('Error: ' + error);
+      res.status(500).send('Error: ' + error);
     });
 });
 
@@ -112,7 +112,7 @@ app.get('/users/:Username', (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      req.status(500).send('Error: ' + err);
+      res.status(500).send('Error: ' + err);
     });
 });
 
