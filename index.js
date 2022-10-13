@@ -9,6 +9,11 @@ const app = express();
 const Movies = Models.Movie;
 const Users = Models.User;
 
+const auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
+
 mongoose.connect('mongodb://localhost:27017/myFlixDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
