@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken'),
 
 require('./passport');
 
-let genrateJWTToken = (user) => {
+let generateJWTToken = (user) => {
   return jwt.sign(user, jwtSecret, {
     subject: user.Username,
     expiresIn: '7d',
-    algorithm: 'ES256',
+    algorithm: 'HS256',
   });
 };
 
@@ -26,7 +26,7 @@ module.exports = (router) => {
         if (error) {
           res.send(error);
         }
-        let token = genrateJWTToken(user.toJSON());
+        let token = generateJWTToken(user.toJSON());
         return res.json({ user, token });
       });
     })(req, res);
