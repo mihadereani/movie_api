@@ -3,7 +3,8 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   uuid = require('uuid'),
   mongoose = require('mongoose'),
-  Models = require('./models.js');
+  Models = require('./models.js'),
+  { check, validationResult } = require('express-validator');
 
 const app = express();
 const Movies = Models.Movie;
