@@ -10,7 +10,7 @@ const app = express();
 const Movies = Models.Movie;
 const Users = Models.User;
 
-/* const cors = require('cors');
+const cors = require('cors');
 const allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 app.use(
   cors({
@@ -25,7 +25,7 @@ app.use(
       return callback(null, true);
     },
   })
-); */
+);
 
 const auth = require('./auth')(app);
 
@@ -123,7 +123,7 @@ app.get(
 
 app.post(
   '/users',
-/*   [
+  [
     check('Username', 'Username is required').isLength({ min: 5 }),
     check(
       'Username',
@@ -131,15 +131,15 @@ app.post(
     ).isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail(),
-  ], */
+  ],
   (req, res) => {
-/*     let errors = validationResult(req);
+    let errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
-    } */
+    }
 
-//    const hashedPassword = Users.hashedPassword(req.body.Password);
+    const hashedPassword = Users.hashedPassword(req.body.Password);
     Users.findOne({ Username: req.body.Username })
       .then((user) => {
         if (user) {
@@ -147,7 +147,7 @@ app.post(
         } else {
           Users.create({
             Username: req.body.Username,
-/*             Password: hashedPassword, */
+            /*             Password: hashedPassword, */
             Password: req.body.Password,
             Email: req.body.Email,
             Birthday: req.body.Birthday,
