@@ -32,7 +32,12 @@ const auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+/* mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}); */
+
+mongoose.connect(process.env.CONNECTION_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -147,8 +152,7 @@ app.post(
         } else {
           Users.create({
             Username: req.body.Username,
-            /*             Password: hashedPassword, */
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday,
           })
