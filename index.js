@@ -6,12 +6,15 @@ const express = require('express'),
   Models = require('./models.js'),
   { check, validationResult } = require('express-validator');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const app = express();
 const Movies = Models.Movie;
 const Users = Models.User;
 
 const cors = require('cors');
-const allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+const allowedOrigins = ['*'];
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -31,11 +34,6 @@ const auth = require('./auth')(app);
 
 const passport = require('passport');
 require('./passport');
-
-/* mongoose.connect('mongodb://localhost:27017/myFlixDB', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}); */
 
 mongoose.connect(process.env.CONNECTION_URL, {
   useNewUrlParser: true,
