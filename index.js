@@ -142,11 +142,11 @@ app.post(
       return res.status(422).json({ errors: errors.array() });
     }
 
-    const hashedPassword = Users.hashedPassword(req.body.Password);
+    const hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne({ Username: req.body.Username })
       .then((user) => {
         if (user) {
-          return res.status(400).send(req.body.Username + ' already exists.');
+          return res.status(400).send(req.body.Username + ' already exists');
         } else {
           Users.create({
             Username: req.body.Username,
@@ -159,7 +159,7 @@ app.post(
             })
             .catch((error) => {
               console.error(error);
-              req.status(500).send('Error: ' + error);
+              res.status(500).send('Error: ' + error);
             });
         }
       })
