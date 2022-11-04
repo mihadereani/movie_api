@@ -3,22 +3,17 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   Models = require('./models.js'),
+  cors = require('cors'),
   { check, validationResult } = require('express-validator');
 
 const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const Movies = Models.Movie;
-const Users = Models.User;
-
-const cors = require('cors');
 app.use(cors());
 
-const auth = require('./auth')(app);
-
-const passport = require('passport');
-require('./passport');
+const Movies = Models.Movie;
+const Users = Models.User;
 
 mongoose.connect(process.env.CONNECTION_URL, {
   useNewUrlParser: true,
@@ -30,13 +25,18 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
+
 app.get('/', (req, res) => {
   res.send('Welcome to my app!');
 });
 
 app.get(
   '/movies',
-  // passport.authenticate('jwt', { session: false }),
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.find()
       .then((movies) => {
