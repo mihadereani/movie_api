@@ -219,7 +219,7 @@ app.post(
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
-        $push: { FavoriteMovies: req.params.MovieID },
+        $push: { FavouriteMovies: req.params.MovieID },
       },
       { new: true },
       (err, updatedUser) => {
@@ -241,7 +241,7 @@ app.delete(
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
-        $pull: { FavoriteMovies: req.params.MovieID },
+        $pull: { FavouriteMovies: req.params.MovieID },
       },
       { new: true },
       (err, updatedUser) => {
