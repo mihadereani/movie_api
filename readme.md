@@ -1,13 +1,12 @@
 # Movie API
 
-
 This repository contains REST API for application called “myFlix” that interacts with a database that stores data about different movies, directors, and genres ... Users are able to sign up, update their personal information, and create a list of their favorite movies.
 
 ## Features:
 
 - Return a list of ALL movies to the user
 - Return data (description, genre, director, image URL, whether it’s featured or not) about a
-single movie by title to the user
+  single movie by title to the user
 - Return data about a genre (description) by name/title (e.g., “Thriller”)
 - Return data about a director (bio, birth year, death year) by name
 - Allow new users to register
@@ -24,13 +23,5 @@ single movie by title to the user
 - Mongoose
 
 ## Links:
-- https://myflixmiha.herokuapp.com
+
 - https://myflixmiha.herokuapp.com/documentation.html
-
-
-
-
-
-
-
-
