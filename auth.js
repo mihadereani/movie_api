@@ -5,6 +5,11 @@ const jwt = require('jsonwebtoken'),
 
 require('./passport');
 
+/**
+ * Generate the user's JWT
+ * @param {*} user
+ * @returns user object, JSON Web Token for the user
+ */
 let generateJWTToken = (user) => {
   return jwt.sign(user, jwtSecret, {
     subject: user.Username,
@@ -13,6 +18,12 @@ let generateJWTToken = (user) => {
   });
 };
 
+/**
+ * POST user login, authenticate user and generate user token upon login
+ * @param {*} router
+ * @returns user object with JWT
+ * @requires passport
+ */
 module.exports = (router) => {
   router.post('/login', (req, res) => {
     passport.authenticate('local', { session: false }, (error, user, info) => {
